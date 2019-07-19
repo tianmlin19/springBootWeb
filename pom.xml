@@ -12,6 +12,7 @@
 	<artifactId>springbootweb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springBootWeb</name>
+	<packaging>jar</packaging>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
