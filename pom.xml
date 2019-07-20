@@ -67,11 +67,11 @@
 			<version>3.8.1</version>
 		</dependency>
 		<!--springBoot热部署-->
-		<!--<dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<version>LATEST</version>
-		</dependency>-->
+		</dependency>
 
 		<!--引入swagger2-->
 		<dependency>
@@ -115,11 +115,11 @@
 
 
 		<!--加入mybatis和mysql-->
-		<dependency>
+<!--		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.12</version>
-		</dependency>
+		</dependency>-->
 
 		<!--	<dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
@@ -128,24 +128,24 @@
             </dependency>-->
 
 		<!--代码生成器-->
-		<dependency>
+<!--		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
 			<version>3.1.1</version>
-		</dependency>
+		</dependency>-->
 		<!--	<dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-generator</artifactId>
                 <version>3.1.1</version>
             </dependency>-->
-		<dependency>
+<!--		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 			<version>2.3.28</version>
-		</dependency>
+		</dependency>-->
 
 		<!--添加dom4j解析xml-->
-		<dependency>
+<!--		<dependency>
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
 		</dependency>
@@ -154,13 +154,13 @@
 			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
 			<version>1.4.9</version>
-		</dependency>
+		</dependency>-->
 
-		<dependency>
+<!--		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.46</version>
-		</dependency>
+		</dependency>-->
 
 		<!--超强工具包 田茂林 参考文档 https://www.hutool.cn/docs/#/-->
 		<dependency>
@@ -186,8 +186,16 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!--不配置，热部署不会生效-->
+					<fork>true</fork>
+					<mainClass>com.tml.SpringBootWebApplication</mainClass>
+				</configuration>
 			</plugin>
+
 		</plugins>
+		<!--打包编译后的名称-->
+		<finalName>MyDemo</finalName>
 	</build>
 
 </project>
