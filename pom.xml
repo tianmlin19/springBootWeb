@@ -67,11 +67,11 @@
 			<version>3.8.1</version>
 		</dependency>
 		<!--springBoot热部署-->
-		<dependency>
+<!--		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<version>LATEST</version>
-		</dependency>
+		</dependency>-->
 
 		<!--引入swagger2-->
 		<dependency>
@@ -104,6 +104,14 @@
 			<groupId>net.bytebuddy</groupId>
 			<artifactId>byte-buddy</artifactId>
 			<version>1.9.10</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>28.0-jre</version>
 		</dependency>
 
 		<!--<dependency>

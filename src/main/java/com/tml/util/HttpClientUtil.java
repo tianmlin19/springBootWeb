@@ -44,7 +44,19 @@ public class HttpClientUtil {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").disableHtmlEscaping().create();
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+
+
+        String url = "https://api.wanmen.org/4.0/me/daily-signin";
+        String loginUrl = "https://api.wanmen.org/4.0/main/signin";
+        String loginUrlGet = "https://api.wanmen.org/4.0/main/signin?account=13716416827&password=wangyun1990";
+        List<BasicNameValuePair> listParam = new ArrayList<>();
+        BasicNameValuePair pair1 = new BasicNameValuePair("account","13716416827");
+        BasicNameValuePair pair2 = new BasicNameValuePair("password","wangyun1990");
+        BasicNameValuePair pair3 = new BasicNameValuePair("code","");
+        listParam.add(pair1);
+        listParam.add(pair2);
+        listParam.add(pair3);
+        doGet(loginUrlGet);
     }
 
     /**
@@ -270,6 +282,9 @@ public class HttpClientUtil {
         return "";
 
     }
+
+
+
 
 
 }

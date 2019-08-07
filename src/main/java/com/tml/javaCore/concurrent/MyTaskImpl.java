@@ -19,16 +19,17 @@ public class MyTaskImpl implements MyTask {
 
 
     @Override
-    public void doTask() throws Exception {
-        logger.info("线程：{}doTask enter!", Thread.currentThread().getName());
-        Thread.sleep(1500);
-        logger.info("线程：{}doTask success!", Thread.currentThread().getName());
+    public String doTask() throws Exception {
+        logger.info("线程：{} doTask enter!", Thread.currentThread().getName());
+        Thread.sleep(5000);
+        logger.info("线程：{} doTask success!", Thread.currentThread().getName());
+        return Thread.currentThread().getName() + "doTask success!";
     }
 
     @Override
     public void statisticsTask() throws Exception {
-        logger.info("线程：{}statisticsTask enter!", Thread.currentThread().getName());
-        logger.info("线程：{}statisticsTask success!", Thread.currentThread().getName());
+        logger.info("线程：{} statisticsTask enter!", Thread.currentThread().getName());
+        logger.info("线程：{} statisticsTask success!", Thread.currentThread().getName());
 
     }
 }

@@ -8,7 +8,7 @@ package com.tml.javaCore.concurrent;
  */
 public interface MyTask {
 
-    void doTask() throws Exception;
+    String doTask() throws Exception;
 
 
     void statisticsTask() throws Exception;

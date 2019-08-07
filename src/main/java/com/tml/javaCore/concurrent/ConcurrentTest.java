@@ -2,9 +2,13 @@ package com.tml.javaCore.concurrent;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,24 +44,31 @@ public class ConcurrentTest {
         CountDownLatch statisticsThread = new CountDownLatch(threads);
         long startTime = System.currentTimeMillis();
 
+        List<Future<String>> result = new ArrayList<>();
+
         for (int i = 0; i < threads; i++) {
-            executor.submit(() -> {
+
+            Future<String> submit = executor.submit(() -> {
+
                 String threadName = Thread.currentThread().getName();
                 try {
                     logger.info("线程:{}等待执行任务！", threadName);
                     //线程等待，一起并发执行
                     threadWork.await();
-                    myTask.doTask();
+                    String s = myTask.doTask();
                     logger.info("线程:{}执行任务成功，消费时间：{}", threadName, (System.currentTimeMillis() - startTime));
+                    return s;
 
                 } catch (Exception e) {
                     logger.error("线程：{}执行任务异常！", threadName, e);
+                    return e.getMessage();
 
                 } finally {
                     statisticsThread.countDown();
                 }
-
             });
+
+            result.add(submit);
         }
 
         try {
@@ -65,6 +76,10 @@ public class ConcurrentTest {
             logger.info("统计线程：{}开始唤醒工作线程了!", Thread.currentThread().getName());
             threadWork.countDown();
             statisticsThread.await();
+            logger.info("统计结果的大小为：{}", result.size());
+            for (int i=0;i<result.size();i++) {
+                logger.info("返回的结果为：{}", result.get(i).get());
+            }
             logger.info("统计线程：{}开始统计结果了!", Thread.currentThread().getName());
             myTask.statisticsTask();
             logger.info("统计线程:{}执行任务成功，线程总的消费时间：{}", Thread.currentThread().getName(),
