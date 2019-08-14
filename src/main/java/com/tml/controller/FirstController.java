@@ -1,6 +1,7 @@
 package com.tml.controller;
 
 
+import com.google.common.util.concurrent.RateLimiter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.tml.constants.Student;
@@ -25,6 +26,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/tml")
 public class FirstController {
+
+
+    /*
+    guava中实现了限流器，限流算法是令牌桶算法
+     */
+    private static RateLimiter rateLimiter = RateLimiter.create(2);
 
     @Autowired
     private FirstService firstService;
@@ -71,12 +78,14 @@ public class FirstController {
 
 
     @RequestMapping(value = "/listAll", method = {RequestMethod.POST, RequestMethod.GET})
-    @ApiOperation(value = "查询所有学生信息")
-    public List<Student> listAll() {
+    @ApiOperation(value = "请求限流案例")
+    public String listAll() {
+        double acquire = rateLimiter.acquire(1);
+        if (acquire > 0.0) {
+            return "请求过快！";
+        }
         logger.info("listAll==>enter");
-        List<Student> students = firstService.listAllStudent();
-        logger.info("students result is :{}", gson.toJson(students));
-        return students;
+        return "Hello World!";
     }
 
 

@@ -37,45 +37,56 @@ public class AbortPolicyDemo {
                 }
             });
         }
+
+
+
     }
 
 
+    public static boolean isSquare(int num) {
+        //负数不是完全平方数
+        if (num < 0) {
+            return false;
+        }
+        //比该数小的数中  有能平方等于该数  说明是完全平方数
+        for (int i = 0; i < Math.sqrt(num) + 1; i++) {
+
+            if (i * i == num) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * 抛弃任务并抛出{@Code RejectedExecutionException}异常
-     * @param executor
      */
-    public static void abortPolicy(ThreadPoolExecutor executor){
+    public static void abortPolicy(ThreadPoolExecutor executor) {
         executor.setRejectedExecutionHandler(new AbortPolicy());
     }
 
 
     /**
      * 任务不丢弃，由当前线程执行，不再额外的创建线程
-     * @param executor
      */
-       public static void callerRunsPolicy(ThreadPoolExecutor executor){
+    public static void callerRunsPolicy(ThreadPoolExecutor executor) {
         executor.setRejectedExecutionHandler(new CallerRunsPolicy());
     }
 
 
     /**
      * 丢弃任务，但不抛出异常
-     * @param executor
      */
-    public static void discardPolicy(ThreadPoolExecutor executor){
+    public static void discardPolicy(ThreadPoolExecutor executor) {
         executor.setRejectedExecutionHandler(new DiscardPolicy());
     }
 
     /**
      * 丢弃队列中的任务
-     * @param executor
      */
-    public static void discardOldestPolicy(ThreadPoolExecutor executor){
+    public static void discardOldestPolicy(ThreadPoolExecutor executor) {
         executor.setRejectedExecutionHandler(new DiscardOldestPolicy());
     }
-
-
-
 
 
 }

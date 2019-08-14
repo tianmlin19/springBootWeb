@@ -21,7 +21,7 @@ public class MyJobs {
     private static final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").disableHtmlEscaping()
                     .create();
 
-   @Scheduled(cron = "0/4 * * * * ?")
+   //@Scheduled(cron = "0/4 * * * * ?")
     public void doTest() throws Exception {
         logger.info("doTest begin！");
         logger.info("**************************");
