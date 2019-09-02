@@ -1,10 +1,5 @@
 package com.tml.javaCore.collection;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import org.springframework.util.Assert;
-
 /**
  * @author tianmlin19
  * @description
@@ -14,12 +9,7 @@ import org.springframework.util.Assert;
 public class HashMapDemo {
 
     public static void main(String[] args) {
-        List<String> list = new ArrayList<>();
-        Assert.notEmpty(list,"dsdsdsds");
-
-
-
-
+        System.out.println(3|6);
 
     }
 
